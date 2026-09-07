@@ -12,6 +12,20 @@
     <% } else { %>
         <p>Please log in.</p>
     <% } %>
+   <div class="container mt-5">
+    <h1>Welcome to the Blog</h1>    
+    <% blogs.forEach((blog) => { %>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><%= blog.title %></h5>
+                <p class="card-text"><%= blog.body %></p>
+                <% if (blog.coverImageURL) { %>
+                    <img src="<%= blog.coverImageURL %>" class="img-fluid" alt="Cover Image">
+                    <a href="/blog/<%= blog._id %>" class="btn btn-primary mt-2">view</a>
+                <% } %>
+            </div>
+        </div>
+    <% }); %>
     <%- include('./partials/scripts.ejs') %>
 </body>
 </html>
