@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
    <%- include('./partials/head.ejs') %>
-  <title>sign in</title>
-  <!-- <link rel="stylesheet" href="/styles.css"> -->
+  <title>Sign in | Blogger</title>
 </head>
 <body>
     <%- include('./partials/nav.ejs') %>
-<div class="container mt-5">
-    <form action="/user/signin" method="POST">   
+<main class="page-shell form-layout auth-layout">
+  <form class="form-card" action="/user/signin" method="POST">
+   <div class="eyebrow">Welcome back</div>
+   <h1>Sign in</h1>
+   <p class="form-intro">Pick up where your reading left off.</p>
    <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
@@ -22,9 +24,10 @@
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div> -->
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-    </div>
+  <button type="submit" class="btn btn-accent">Sign in</button>
+  <p class="auth-switch">New here? <a href="/user/signup">Create an account</a></p>
+  </form>
+</main>
     <%- include('./partials/scripts.ejs') %>
 </body>
 </html>

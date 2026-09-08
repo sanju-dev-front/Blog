@@ -2,30 +2,45 @@
 <html lang="en">
 <head>
    <%- include('./partials/head.ejs') %>
-  <title>Home</title>
-  <!-- <link rel="stylesheet" href="/styles.css"> -->
+    <title>Blogger | Home</title>
 </head>
 <body>
     <%- include('./partials/nav.ejs') %>
-    <% if (user) { %>
-        <p>Welcome, <%= user.name %>!</p>
-    <% } else { %>
-        <p>Please log in.</p>
-    <% } %>
-   <div class="container mt-5">
-    <h1>Welcome to the Blog</h1>    
-    <% blogs.forEach((blog) => { %>
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title"><%= blog.title %></h5>
-                <p class="card-text"><%= blog.body %></p>
-                <% if (blog.coverImageURL) { %>
-                    <img src="<%= blog.coverImageURL %>" class="img-fluid" alt="Cover Image">
-                    <a href="/blog/<%= blog._id %>" class="btn btn-primary mt-2">view</a>
+     <main class="page-shell">
+        <section class="hero">
+            <div>
+                <div class="eyebrow">Ideas worth sharing</div>
+                <h1>A quieter place for better stories.</h1>
+                <p class="hero-copy">Discover thoughtful writing from curious people, or add your own voice to the conversation.</p>
+            </div>
+            <div class="hero-note">
+                <% if (user) { %>
+                    <strong>Welcome back, <%= user.fullName %>.</strong>
+                    Your next story is only a draft away.
+                <% } else { %>
+                    <strong>Make yourself at home.</strong>
+                    Read something new, then join the conversation.
                 <% } %>
             </div>
-        </div>
+        </section>
+        <section class="post-grid" aria-label="Latest posts">
+    <% blogs.forEach((blog) => { %>
+                <article class="post-card">
+                        <% if (blog.coverImageURL) { %>
+                            <img src="<%= blog.coverImageURL %>" class="post-image" alt="Cover image for <%= blog.title %>">
+                        <% } else { %>
+                            <div class="post-placeholder" aria-hidden="true">B.</div>
+                        <% } %>
+                        <div class="post-content">
+                                <h2><%= blog.title %></h2>
+                                <p class="post-excerpt"><%= blog.body %></p>
+                                <a href="/blog/<%= blog._id %>" class="text-link">Read story &rarr;</a>
+            </div>
+                </article>
     <% }); %>
+        <% if (!blogs.length) { %><div class="empty-state">No stories yet. Be the first to write one.</div><% } %>
+        </section>
+     </main>
     <%- include('./partials/scripts.ejs') %>
 </body>
 </html>

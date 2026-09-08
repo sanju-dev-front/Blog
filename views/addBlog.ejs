@@ -2,20 +2,22 @@
 <html lang="en">
 <head>
    <%- include('./partials/head.ejs') %>
-  <title>Add Blog</title>
-  <!-- <link rel="stylesheet" href="/styles.css"> -->
+  <title>Write a post | Blogger</title>
 </head>
 <body>
     <%- include('./partials/nav.ejs') %>
-<div class="container mt-5">
-    <form action="/blog" method="POST" enctype="multipart/form-data" >
+<main class="page-shell form-layout">
+  <form class="form-card" action="/blog" method="POST" enctype="multipart/form-data">
+    <div class="eyebrow">Your perspective matters</div>
+    <h1>Write a new story</h1>
+    <p class="form-intro">Turn an idea into something people can carry with them.</p>
          <div class="mb-3">
-    <label for="coverImage" class="form-label">cover image</label>
+    <label for="coverImage" class="form-label">Cover image</label>
     <input type="file" class="form-control" id="coverImage" name="coverImage" aria-describedby="coverImageHelp">
     <div id="coverImageHelp" class="form-text">Upload the cover image.</div>
   </div>
   <div class="mb-3">
-    <label for="title" class="form-label">title</label>
+    <label for="title" class="form-label">Title</label>
     <input type="text" class="form-control" id="title" name="title" aria-describedby="title">
     <div id="titleHelp" class="form-text">Enter a title for your blog post.</div>
   </div>
@@ -25,9 +27,10 @@
     <div id="bodyHelp" class="form-text">Enter the content for your blog post.</div>
   </div>
   <div class="mb-3">
-   <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-accent">Publish story</button>
   </div>
   </form>
+</main>
     <%- include('./partials/scripts.ejs') %>
 </body>
 </html>

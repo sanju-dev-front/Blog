@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('./partials/head.ejs') %>
+    <title><%= blog.title %> | Blogger</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+        <main class="page-shell">
+            <article class="article">
+                <header class="article-header">
+                    <div class="eyebrow">From the community</div>
+                    <h1><%= blog.title %></h1>
+                    <p class="article-meta">Written by <strong><%= blog.createdBy.fullName %></strong></p>
+                </header>
+        <% if (blog.coverImageURL) { %>
+                        <img src="<%= blog.coverImageURL %>" class="article-image" alt="Cover image for <%= blog.title %>">
+        <% } %>
+                <div class="article-body"><%= blog.body %></div>
+                <a class="back-link" href="/">&larr; Back to all stories</a>
+            </article>
+        </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
