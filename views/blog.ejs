@@ -17,6 +17,34 @@
                         <img src="<%= blog.coverImageURL %>" class="article-image" alt="Cover image for <%= blog.title %>">
         <% } %>
                 <div class="article-body"><%= blog.body %></div>
+
+                <div class="article-footer">
+                    <p class="article-meta">Published on <%= blog.createdAt.toDateString() %></p>
+                </div>
+                <div class="article-comments">
+                    <h2>Comments</h2>
+                    <% if (comments.length > 0) { %>
+                        <ul class="comment-list">
+                            <% comments.forEach((comment) => { %>
+                                <li class="comment">
+                                    <p class="comment-meta"><strong><%= comment.createdBy.fullName %></strong> on <%= comment.createdAt.toDateString() %></p>
+                                    <p class="comment-body"><%= comment.content %></p>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    <% } else { %>
+                        <p>No comments yet. Be the first to comment!</p>
+                    <% } %>
+                    <% if (user) { %>
+                        <form class="comment-form" action="/blog/comment/<%= blog._id %>" method="POST">
+                            <div class="mb-3">
+                                <label for="commentBody" class="form-label">Add a comment</label>
+                                <textarea class="form-control" id="commentBody" name="content" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-accent">Post comment</button>
+                        </form>
+                    <% } %>
+                </div>
                 <a class="back-link" href="/">&larr; Back to all stories</a>
             </article>
         </main>
