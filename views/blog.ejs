@@ -22,7 +22,7 @@
                     <p class="article-meta">Published on <%= blog.createdAt.toDateString() %></p>
                 </div>
                 <div class="article-comments">
-                    <h2>Comments</h2>
+                    <h2>Comments (<%= comments.length %>)</h2>
                     <% if (comments.length > 0) { %>
                         <ul class="comment-list">
                             <% comments.forEach((comment) => { %>
