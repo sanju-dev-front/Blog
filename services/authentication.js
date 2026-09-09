@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
 
-const secretKey = '$uperMAn@123'; // Replace with your own secret key
+const secretKey = process.env.JWT_SECRET;
+
+if (!secretKey) {
+    throw new Error('JWT_SECRET must be set in the environment');
+}
 
 function createTokenForUser(user) { 
     const payload = { 

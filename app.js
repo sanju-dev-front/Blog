@@ -1,5 +1,8 @@
-const express=require('express');
 const path=require('path');
+require('dotenv').config({ path: path.join(__dirname, 'env/.env') });
+
+const express=require('express');
+
 const mongoose=require('mongoose');
 const cookieParser=require('cookie-parser');
 
@@ -9,7 +12,7 @@ const blogRoutes=require('./routes/blog');
 const { checkForAuthenticationCookie } = require('./middlewares/authentication');
 const Blog = require('./models/blog');
 
-mongoose.connect('mongodb://localhost:27017/blog').then(()=>{
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/blog').then(()=>{
     console.log('Connected to MongoDB');
 }).catch((err)=>{
     console.error('Error connecting to MongoDB:', err);
@@ -17,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/blog').then(()=>{
 
 const app=express();
 
-const port=3000;
+const port=Number.parseInt(process.env.PORT, 10) || 3000;
 
 // view setup
 app.set('view engine','ejs');

@@ -16,8 +16,11 @@ router.post('/signin', async (req, res) => {
     try {
         const { email, password } = req.body;
        const token = await User.matchPasswordAndGenerateToken(email, password);
-        console.log('User signed in:', token);  
-        res.cookie("token", token).redirect('/');
+        res.cookie("token", token, {
+            httpOnly: true,
+            sameSite: 'lax',
+            secure: process.env.NODE_ENV === 'production'
+        }).redirect('/');
     } catch (error) {
         console.error('Signin Error:', error.message);
         res.status(401).render('signin', { error: error.message });
